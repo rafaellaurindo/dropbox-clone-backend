@@ -1,10 +1,13 @@
+const cors = require("cors");
 const express = require("express");
+const http = require("http");
 const mongoose = require("mongoose");
 const path = require("path");
-const http = require("http");
 const socket = require("socket.io");
 
 const app = express();
+app.use(cors);
+
 const MONGODB_URI = "YOUR_MONGODB_INSTANCE_URI_HERE";
 
 const server = http.Server(app);
