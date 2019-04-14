@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 const MONGODB_URI = "YOUR_MONGODB_INSTANCE_URI_HERE";
@@ -12,6 +13,7 @@ app.use(
     extended: true
   })
 );
+app.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 
 app.use(require("./routes"));
 
