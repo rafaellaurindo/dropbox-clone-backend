@@ -18,6 +18,11 @@ io.on("connection", socket => {
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+app.use((req, res, next) => {
+  req.io = io;
+
+  return next();
+});
 app.use(express.json());
 app.use(
   express.urlencoded({
