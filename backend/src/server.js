@@ -1,9 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const http = require("http");
+const socket = require("socket.io");
 
 const app = express();
 const MONGODB_URI = "YOUR_MONGODB_INSTANCE_URI_HERE";
+
+const server = http.Server(app);
+const io = socket(server);
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
@@ -17,4 +22,4 @@ app.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 
 app.use(require("./routes"));
 
-app.listen(8888);
+server.listen(8888);
