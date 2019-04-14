@@ -8,7 +8,7 @@ const socket = require("socket.io");
 const app = express();
 app.use(cors());
 
-const MONGODB_URI = "";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const server = http.Server(app);
 const io = socket(server);
