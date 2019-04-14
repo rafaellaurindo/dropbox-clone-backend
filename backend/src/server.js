@@ -10,6 +10,12 @@ const MONGODB_URI = "YOUR_MONGODB_INSTANCE_URI_HERE";
 const server = http.Server(app);
 const io = socket(server);
 
+io.on("connection", socket => {
+  socket.on("connectRoom", box => {
+    socket.join(box);
+  });
+});
+
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.use(express.json());
