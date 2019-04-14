@@ -6,7 +6,7 @@ const path = require("path");
 const socket = require("socket.io");
 
 const app = express();
-app.use(cors);
+app.use(cors());
 
 const MONGODB_URI = "YOUR_MONGODB_INSTANCE_URI_HERE";
 
