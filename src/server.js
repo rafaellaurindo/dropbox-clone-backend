@@ -8,7 +8,7 @@ const socket = require("socket.io");
 const app = express();
 app.use(cors());
 
-const MONGODB_URI = "YOUR_MONGODB_INSTANCE_URI_HERE";
+const MONGODB_URI = "";
 
 const server = http.Server(app);
 const io = socket(server);
@@ -36,4 +36,4 @@ app.use("/files", express.static(path.resolve(__dirname, "..", "tmp")));
 
 app.use(require("./routes"));
 
-server.listen(8888);
+server.listen(process.env.PORT || 8888);
