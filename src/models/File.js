@@ -1,24 +1,25 @@
 const mongoose = require("mongoose");
 
-const File = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true
-    },
-    path: {
-      type: String,
-      required: true
-    }
+const File = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
   },
-  {
-    timestamps: true,
-    toObject: { virtuals: true },
-    toJSON: { virtuals: true }
+  path: {
+    type: String,
+    required: true
   }
-);
+}, {
+  timestamps: true,
+  toObject: {
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
+  }
+});
 
-File.virtual("url").get(function() {
+File.virtual("url").get(function () {
   const URL = process.env.URL || "http://localhost:8888";
   return `${URL}/files/${encodeURIComponent(this.path)}`;
 });

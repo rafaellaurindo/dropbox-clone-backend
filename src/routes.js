@@ -16,6 +16,8 @@ routes.post(
   FileController.store
 );
 
-routes.get("/", (req, res) => res.json({ status: "running" }));
+routes.get("/", (req, res) => res.json({
+  status: "running"
+}));
 
 module.exports = routes;
