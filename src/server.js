@@ -4,11 +4,14 @@ const http = require("http");
 const mongoose = require("mongoose");
 const path = require("path");
 const socket = require("socket.io");
+require("dotenv").config({
+  path: path.resolve(__dirname, '..', '.env')
+});
 
 const app = express();
 app.use(cors());
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_INSTANCE = process.env.MONGODB_INSTANCE;
 
 const server = http.Server(app);
 const io = socket(server);
@@ -19,7 +22,9 @@ io.on("connection", socket => {
   });
 });
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_INSTANCE, {
+  useNewUrlParser: true
+});
 
 app.use((req, res, next) => {
   req.io = io;
